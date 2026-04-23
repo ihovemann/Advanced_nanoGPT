@@ -37,7 +37,7 @@ print(f"length of dataset in data: {len(data):,}")
 
 # Add special tokens to the vocabulary
 special_tokens = list("[SPEAKER][ANSWER][END][CLASSIFY]")
-chars = sorted(list(set(data) | set(special_tokens)))
+chars = sorted(list(set(data) | special_tokens))
 vocab_size = len(chars)
 
 # Task A: Speaker Identification
@@ -66,6 +66,11 @@ speaker_data = extract_speaker_examples(data)
 
 # Task B: Verse vs. Prose Classification
 def is_verse(lines):
+    """
+    Heuristic: verse lines in Shakespeare tend to be short (~8-10 words)
+    and consistent in length (iambic pentameter). Prose lines are longer
+    and more variable. Thresholds chosen empirically on a small sample.
+    """
     # simple heuristic, check for consistency and length
     lengths = [len(l.split()) for l in lines]
     avg = sum(lengths) / len(lengths)
@@ -171,6 +176,14 @@ train_ids = np.array(train_ids, dtype=np.uint16)
 val_ids = np.array(val_ids, dtype=np.uint16)
 train_ids.tofile(os.path.join(os.path.dirname(__file__), 'train.bin'))
 val_ids.tofile(os.path.join(os.path.dirname(__file__), 'val.bin'))
+
+# Make sure we have enough dataset
+MIN_TRAIN, MIN_TEST = 500, 100
+
+assert len(train_ids) >= MIN_TRAIN, \
+    f"Not enough training examples: {len(train_ids)} < {MIN_TRAIN}"
+assert len(val_ids) >= MIN_TEST, \
+    f"Not enough test examples: {len(val_ids)} < {MIN_TEST}"
 
 # save the meta information as well, to help us encode/decode later
 meta = {
