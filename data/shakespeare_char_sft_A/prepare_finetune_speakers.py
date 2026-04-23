@@ -106,21 +106,21 @@ def extract_verse_prose_examples(text):
 
 verse_data = extract_verse_prose_examples(data)
 
-def preview_examples(examples, label, n=5):
-    print(f"\n===== {label} EXAMPLES =====")
-    count = 0
-    for ex in examples:
-        if f"[ANSWER] {label}" in ex:
-            print("\n---")
-            print(ex)
-            count += 1
-            if count >= n:
-                break
-    return count
+# def preview_examples(examples, label, n=5):
+#     print(f"\n===== {label} EXAMPLES =====")
+#     count = 0
+#     for ex in examples:
+#         if f"[ANSWER] {label}" in ex:
+#             print("\n---")
+#             print(ex)
+#             count += 1
+#             if count >= n:
+#                 break
+#     return count
     
 
-preview_examples(verse_data, "VERSE", 5)
-preview_examples(verse_data, "PROSE", 5)
+# # preview_examples(verse_data, "VERSE", 5)
+# # preview_examples(verse_data, "PROSE", 5)
 
 print(f"Speaker examples: {len(speaker_data)}")
 print(f"Verse/Prose examples: {len(verse_data)}")
