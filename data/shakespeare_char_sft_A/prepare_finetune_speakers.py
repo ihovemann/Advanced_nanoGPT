@@ -11,9 +11,9 @@ encoder and decoder and some other related info.
 
 Each task can be run separately by
 ```
-python prepare_finetune_speakers.py --task A 
-python prepare_finetune_speakers.py --task B
-python prepare_finetune_speakers.py # this is for combined
+python data/shakespeare_char_sft_A/prepare_finetune_speakers.py --task A
+python data/shakespeare_char_sft_B/prepare_finetune_speakers.py --task B
+python data/shakespeare_char_sft_combined/prepare_finetune_speakers.py # this is for combined
 ```
 """
 import os
@@ -37,7 +37,7 @@ print(f"length of dataset in data: {len(data):,}")
 
 # Add special tokens to the vocabulary
 special_tokens = list("[SPEAKER][ANSWER][END][CLASSIFY]")
-chars = sorted(list(set(data) | special_tokens))
+chars = sorted(list(set(data) | set(special_tokens)))
 vocab_size = len(chars)
 
 # Task A: Speaker Identification
