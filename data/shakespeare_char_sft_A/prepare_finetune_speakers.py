@@ -11,9 +11,9 @@ encoder and decoder and some other related info.
 
 Each task can be run separately by
 ```
-python prepare_finetune_speakers.py --task A 
-python prepare_finetune_speakers.py --task B
-python prepare_finetune_speakers.py # this is for combined
+python data/shakespeare_char_sft_A/prepare_finetune_speakers.py --task A
+python data/shakespeare_char_sft_B/prepare_finetune_speakers.py --task B
+python data/shakespeare_char_sft_combined/prepare_finetune_speakers.py # this is for combined
 ```
 """
 import os
@@ -66,6 +66,11 @@ speaker_data = extract_speaker_examples(data)
 
 # Task B: Verse vs. Prose Classification
 def is_verse(lines):
+    """
+    Heuristic: verse lines in Shakespeare tend to be short (~8-10 words)
+    and consistent in length (iambic pentameter). Prose lines are longer
+    and more variable. Thresholds chosen empirically on a small sample.
+    """
     # simple heuristic, check for consistency and length
     lengths = [len(l.split()) for l in lines]
     avg = sum(lengths) / len(lengths)
@@ -101,21 +106,21 @@ def extract_verse_prose_examples(text):
 
 verse_data = extract_verse_prose_examples(data)
 
-def preview_examples(examples, label, n=5):
-    print(f"\n===== {label} EXAMPLES =====")
-    count = 0
-    for ex in examples:
-        if f"[ANSWER] {label}" in ex:
-            print("\n---")
-            print(ex)
-            count += 1
-            if count >= n:
-                break
-    return count
+# def preview_examples(examples, label, n=5):
+#     print(f"\n===== {label} EXAMPLES =====")
+#     count = 0
+#     for ex in examples:
+#         if f"[ANSWER] {label}" in ex:
+#             print("\n---")
+#             print(ex)
+#             count += 1
+#             if count >= n:
+#                 break
+#     return count
     
 
-preview_examples(verse_data, "VERSE", 5)
-preview_examples(verse_data, "PROSE", 5)
+# # preview_examples(verse_data, "VERSE", 5)
+# # preview_examples(verse_data, "PROSE", 5)
 
 print(f"Speaker examples: {len(speaker_data)}")
 print(f"Verse/Prose examples: {len(verse_data)}")
@@ -171,6 +176,14 @@ train_ids = np.array(train_ids, dtype=np.uint16)
 val_ids = np.array(val_ids, dtype=np.uint16)
 train_ids.tofile(os.path.join(os.path.dirname(__file__), 'train.bin'))
 val_ids.tofile(os.path.join(os.path.dirname(__file__), 'val.bin'))
+
+# Make sure we have enough dataset
+MIN_TRAIN, MIN_TEST = 500, 100
+
+assert len(train_ids) >= MIN_TRAIN, \
+    f"Not enough training examples: {len(train_ids)} < {MIN_TRAIN}"
+assert len(val_ids) >= MIN_TEST, \
+    f"Not enough test examples: {len(val_ids)} < {MIN_TEST}"
 
 # save the meta information as well, to help us encode/decode later
 meta = {
