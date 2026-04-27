@@ -29,7 +29,7 @@ gradient_accumulation_steps = 32
 decay_lr = False
 compile = False
 
-max_iters = 2000            
+max_iters = 3000            
 learning_rate = 1e-4
 device = "mps"
 
