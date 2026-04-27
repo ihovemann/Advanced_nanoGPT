@@ -1,0 +1,33 @@
+Overriding: out_dir = out-shakespeare-sft_A
+Overriding: device = cpu
+Overriding: num_samples = 3
+Overriding: max_new_tokens = 500
+number of parameters: 10.65M
+Loading meta from data/shakespeare_char_sft_A/meta.pkl...
+
+[SPEAKER] For stor but for with before; that time your bany. [ANSWER] GLOUCESTER [END]
+[SPEAKER] Come your light. [ANSWER] DUKE VINCENTIO [END]
+[SPEAKER] A hearten Edward, I say your sweeter with ares. [ANSWER] GLOUCESTER [END]
+[SPEAKER] The night, [ANSWER] ROMEO [END]
+[SPEAKER] he call this prachess not stander in our true: [ANSWER] ROMEO [END]
+[SPEAKER] Well, if thy propertues, and her leave one be. [ANSWER] VINCENTIO [END]
+[SPEAKER] Come, I say not to ant saints a touch and so [ANSWER] KING R
+---------------
+
+[SPEAKER] Loody of their more grants soul! [ANSWER] MENENIUS [END]
+[SPEAKER] That you come [ANSWER] DUKE VINCENTIO [END]
+[SPEAKER] What'st: what's my heart? [ANSWER] GLOUCESTER [END]
+[SPEAKER] News: you true in hart with endent. [ANSWER] ROMEO [END]
+[SPEAKER] Ay, then the suke though you womaring sweet to more. [ANSWER] KING RICHARD III [END]
+[SPEAKER] I stand should to the daughtered with on supper, [ANSWER] PETRUTER [END]
+[SPEAKER] Thou whosest father, we in to-Taper. [ANSWER] KING RICHARD III
+---------------
+
+[SPEAKER] What of mistress, that he life mind me so, [ANSWER] DUKE VINCENTIO [END]
+[SPEAKER] Why, for he haste more! fear, me mean should told you? [ANSWER] ROMEO [END]
+[SPEAKER] 'Tis be made a perpost with at thee trought [ANSWER] MENENIUS [END]
+[SPEAKER] Me life 'er or mark and I, and this [ANSWER] KING RICHARD III [END]
+[SPEAKER] What us throw in might [ANSWER] KING RICHARD III [END]
+[SPEAKER] I'll shall of you hath you did Richmand Romeo'd: [ANSWER] KING RICHARD III [END]
+[SPEAKER] How! [ANS
+---------------
