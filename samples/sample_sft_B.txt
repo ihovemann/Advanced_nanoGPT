@@ -1,0 +1,24 @@
+Overriding: out_dir = out-shakespeare-sft_B
+Overriding: device = cpu
+Overriding: num_samples = 3
+Overriding: max_new_tokens = 500
+number of parameters: 10.65M
+Loading meta from data/shakespeare_char_sft_B/meta.pkl...
+
+[CLASSIFY] LADY ANNE: Lord will be said of this sweet absolute Should warrant likely strong before this contract. [ANSWER] PROSE [END]
+[CLASSIFY] My wife and to extermit, if you good sweet Mantua. CLIFFORD: [ANSWER] PROSE [END]
+[CLASSIFY] How is not with it, that when you are Till me abide: speak, but Or soldiers: to my tongue, and boling with use [ANSWER] PROSE [END]
+[CLASSIFY] So they see, who shall I have made, Despairs sit, so how to an happy he, good news: And let the matter far some that b
+---------------
+
+[CLASSIFY] Orden exterity o'joy. ROMEO: When comes the argument vain to the duke [ANSWER] PROSE [END]
+[CLASSIFY] Now art thou fortuness are complix That I will gentle abroad strike which for repecial. If not pain will play be the grating. [ANSWER] VERSE [END]
+[CLASSIFY] to satisforce and from this well follower. KING RICHARD III: Holdst that lanks of from the morning brother, [ANSWER] PROSE [END]
+[CLASSIFY] Is discredittted for through; and I do see he coure Awaked, like same to all trad his ati
+---------------
+
+[CLASSIFY] So some done of voices where thou doubless by redeed. LADY GREY: [ANSWER] PROSE [END]
+[CLASSIFY] Provost: This am I saw thou art: What envitory Clifford, do not that be'en the made: And so perceive you, sir, what you have in Baps, and and he to meet thee what [ANSWER] VERSE [END]
+[CLASSIFY] Why, for love a hour dear Baptista! What drown ninight to create you before! ELIZA: [ANSWER] PROSE [END]
+[CLASSIFY] both her best all, to see ask, 3 KING HENRY VI Warwick, and friendled humour, Wha
+---------------

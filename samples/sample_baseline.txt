@@ -1,0 +1,64 @@
+Overriding: out_dir = out-shakespeare-baseline
+Overriding: device = cpu
+Overriding: num_samples = 3
+Overriding: max_new_tokens = 500
+number of parameters: 10.65M
+Loading meta from data/shakespeare_char_sft_A/meta.pkl...
+
+Second the spherd of mine to must fain;
+What to shall a pate hone' to ward begle all
+will a people to me on his to his dispen ear
+The pother in this with a heartes; I swear of sheeh call.
+
+Moster:
+I should that affice the expen and riagh?
+How is such and it mest town lies, alas which and hight;
+The winds and at Camious, to this all books,
+Of the purcy themself the says readded speak;
+Which that whose in enestires,
+On thy would, sten whose swir,
+He'll give news ever a to all ferst far some
+From t
+---------------
+
+shaull the pody of their more love shall
+Me love death a grace lord king,
+And make hilds a clook and boys and whons.
+So a thou best may do: what's my velight.
+
+LEONTEGS:
+In the doon.
+
+BENVOLIO:
+Come, and not think their cerince.
+Which not to his done a seep,
+And prity to fear your graxed;
+To mistan, with soon my can that no counter in to dattle kings:
+Where subless is be as this fiendor'd
+And sup a befall call died mine
+to so sen riagesch a dies feges and we calling.
+
+Prost:
+For all tranger. Thi
+---------------
+
+which still most made moon,
+That that for infelling, her is there.
+
+ELBOKE:
+As make the death shall for mone
+Frown thee heaven that so state.
+
+FRIAR AURLANCE:
+Now your mort fares, my gains, if four of hence,
+Though too with his party given?
+For man be thou see thee what that thongue
+Upon him him their leping ould and hearg
+And the been haur proos and prent thee,
+You sing for his be ling me one ear:
+And the so the boyour repose death,
+Whose hear to some 'tis palling and the fears?
+
+PERCUTIO:
+We a
+---------------

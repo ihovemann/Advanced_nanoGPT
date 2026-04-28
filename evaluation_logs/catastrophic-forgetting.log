@@ -1,0 +1,29 @@
+Using device: cpu
+
+Original val set: 111,540 characters
+
+[SFT-A] Loading out-shakespeare-sft_A/ckpt.pt ...
+number of parameters: 10.65M
+  Parameters : 10,696,704
+  Val loss   : 2.0617
+
+[SFT-B] Loading out-shakespeare-sft_B/ckpt.pt ...
+number of parameters: 10.65M
+  Parameters : 10,696,704
+  Val loss   : 1.8064
+
+[SFT-Comb] Loading out-shakespeare-combined/ckpt.pt ...
+number of parameters: 10.65M
+  Parameters : 10,696,704
+  Val loss   : 1.8209
+
+=======================================================
+  Val Loss on Original Shakespeare Val Set
+=======================================================
+  Model              Loss   Delta vs Baseline
+-------------------------------------------------------
+  Baseline (stored)   1.7617                   —
+  SFT-A            2.0617             +0.3000  [forgetting]
+  SFT-B            1.8064             +0.0447  [OK]
+  SFT-Comb         1.8209             +0.0592  [OK]
+=======================================================
