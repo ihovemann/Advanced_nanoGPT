@@ -48,7 +48,7 @@ wandb_run_name = 'gpt2' # 'run' + str(time.time())
 dataset = 'shakespeare_char_sft_combined'
 init_from ="resume"
 use_lora = True
-task_name = "LoRA_4_Multi" 
+task_name = "A+B"
 gradient_accumulation_steps = 8 # used to simulate larger batch sizes
 batch_size = 4 # if gradient_accumulation_steps > 1, this is the micro-batch size
 block_size = 128
@@ -74,7 +74,6 @@ min_lr = 6e-5 # minimum learning rate, should be ~= learning_rate/10 per Chinchi
 backend = 'nccl' # 'nccl', 'gloo', etc.
 # system
 ddp = False 
-
 device = "cuda" if torch.cuda.is_available() else "cpu"
 master_process = True
 dtype = 'float16'  #if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16' # 'float32', 'bfloat16', or 'float16', the latter will auto implement a GradScaler
@@ -172,7 +171,7 @@ if init_from == 'scratch':
 elif init_from == 'resume':
     print(f"Resuming training from {out_dir}")
     # resume training from a checkpoint.
-    ckpt_path = os.path.join(out_dir, 'ckpt.pt')
+    ckpt_path = 'pretrained/ckpt.pt'
     checkpoint = torch.load(ckpt_path, map_location=device)
     checkpoint_model_args = checkpoint['model_args']
     # force these config attributes to be equal otherwise we can't even resume training
@@ -189,7 +188,7 @@ elif init_from == 'resume':
     for k,v in list(state_dict.items()):
         if k.startswith(unwanted_prefix):
             state_dict[k[len(unwanted_prefix):]] = state_dict.pop(k)
-    model.load_state_dict(state_dict, strict=False)
+    model.load_state_dict(state_dict)
     iter_num = checkpoint['iter_num']
     best_val_loss = checkpoint['best_val_loss']
 elif init_from.startswith('gpt2'):
@@ -220,6 +219,7 @@ if master_process and not os.path.exists(csv_path):
 
 if use_lora:
     print("Applying LoRA (PEFT)...")
+
     lora_config = LoraConfig(
         r=lora_rank,
         lora_alpha=lora_alpha,
@@ -227,11 +227,12 @@ if use_lora:
         bias="none", 
         target_modules=["c_attn"],
     )
-    model = inject_adapter_in_model(lora_config, model)
     
-    # ADD THESE TWO LINES SO IT ACTUALLY LOADS YOUR LORA BRAIN:
-    if init_from == 'resume' and 'lora_params' in checkpoint:
-        set_peft_model_state_dict(model, checkpoint['lora_params'])
+    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print("trainable params before lora:", trainable_params)
+    model = inject_adapter_in_model(lora_config, model)
+    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print("trainable params after lora:", trainable_params)
 
 # initialize a GradScaler. If enabled=False scaler is a no-op
 use_cuda = torch.cuda.is_available()
@@ -294,9 +295,6 @@ t0 = time.time()
 local_iter_num = 0 # number of iterations in the lifetime of this process
 raw_model = model.module if ddp else model # unwrap DDP container if needed
 running_mfu = -1.0
-
-trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-
 while True:
 
     # determine and set the learning rate for this iteration
@@ -348,7 +346,7 @@ while True:
                 }
                 print(f"saving checkpoint to {out_dir}")
                 torch.save(checkpoint, os.path.join(out_dir, 'ckpt.pt'))
-    if eval_only:
+    if iter_num == 0 and eval_only:
         break
 
     # forward backward update, with optional gradient accumulation to simulate larger batch size
