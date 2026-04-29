@@ -187,7 +187,7 @@ fig.suptitle("Experiment 5 — LoRA Rank Ablation  |  Task A Speaker Identificat
 
 plt.tight_layout()
 
-os.makedirs("outputs", exist_ok=True)
-out = "outputs/exp5_lora_rank_ablation.png"
+os.makedirs("plots", exist_ok=True)
+out = "plots/exp5_lora_rank_ablation.png"
 plt.savefig(out, dpi=160, bbox_inches="tight", facecolor=BG)
 print(f"Saved → {out}")
