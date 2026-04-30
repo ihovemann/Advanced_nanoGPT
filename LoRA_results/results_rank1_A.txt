@@ -1,0 +1,248 @@
+found vocab_size = 67 (inside data/shakespeare_char_sft_A/meta.pkl)
+Resuming training from out
+number of parameters: 10.65M
+Applying LoRA (PEFT)...
+trainable params before lora: 10696704
+trainable params after lora: 9216
+/Users/rabiaciftci/Desktop/NLP/A.NLP./nanogpt-lora/nanoGPT/train.py:240: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=use_cuda)
+num decayed parameter tensors: 12, with 9,216 parameters
+num non-decayed parameter tensors: 0, with 0 parameters
+using fused AdamW: False
+[CSV] logged step 1000 for A_r1
+step 1000: train loss 3.7901, val loss 3.7365
+saving checkpoint to out
+iter 1000: loss 3.9768, time 1620.78ms, mfu -100.00%
+iter 1010: loss 3.3948, time 138.74ms, mfu 0.64%
+iter 1020: loss 3.0425, time 138.85ms, mfu 0.64%
+iter 1030: loss 2.6118, time 139.33ms, mfu 0.64%
+iter 1040: loss 2.3220, time 139.69ms, mfu 0.64%
+iter 1050: loss 2.3453, time 139.71ms, mfu 0.64%
+iter 1060: loss 1.9348, time 138.92ms, mfu 0.64%
+iter 1070: loss 1.9283, time 139.46ms, mfu 0.64%
+iter 1080: loss 1.7801, time 139.30ms, mfu 0.64%
+iter 1090: loss 1.7068, time 139.84ms, mfu 0.64%
+iter 1100: loss 1.4989, time 139.49ms, mfu 0.64%
+iter 1110: loss 1.3679, time 139.28ms, mfu 0.64%
+iter 1120: loss 1.3458, time 139.58ms, mfu 0.64%
+iter 1130: loss 1.3738, time 139.87ms, mfu 0.64%
+iter 1140: loss 1.3430, time 143.87ms, mfu 0.63%
+iter 1150: loss 1.1496, time 140.33ms, mfu 0.63%
+iter 1160: loss 1.0515, time 140.00ms, mfu 0.63%
+iter 1170: loss 1.0890, time 139.98ms, mfu 0.63%
+iter 1180: loss 1.2807, time 139.63ms, mfu 0.63%
+iter 1190: loss 1.0375, time 138.70ms, mfu 0.63%
+[CSV] logged step 1200 for A_r1
+step 1200: train loss 1.0786, val loss 1.0811
+saving checkpoint to out
+iter 1200: loss 1.1862, time 1029.86ms, mfu 0.58%
+iter 1210: loss 1.1692, time 141.24ms, mfu 0.58%
+iter 1220: loss 0.9236, time 139.48ms, mfu 0.59%
+iter 1230: loss 1.0844, time 140.34ms, mfu 0.59%
+iter 1240: loss 1.0750, time 140.35ms, mfu 0.60%
+iter 1250: loss 1.1437, time 139.72ms, mfu 0.60%
+iter 1260: loss 1.0011, time 140.71ms, mfu 0.60%
+iter 1270: loss 0.8963, time 141.23ms, mfu 0.61%
+iter 1280: loss 0.9931, time 139.87ms, mfu 0.61%
+iter 1290: loss 0.9742, time 140.46ms, mfu 0.61%
+iter 1300: loss 1.1672, time 139.73ms, mfu 0.61%
+iter 1310: loss 0.9612, time 139.66ms, mfu 0.62%
+iter 1320: loss 0.9394, time 140.07ms, mfu 0.62%
+iter 1330: loss 0.8306, time 140.04ms, mfu 0.62%
+iter 1340: loss 0.9921, time 140.16ms, mfu 0.62%
+iter 1350: loss 1.1545, time 140.15ms, mfu 0.62%
+iter 1360: loss 1.1067, time 139.70ms, mfu 0.62%
+iter 1370: loss 0.9521, time 140.53ms, mfu 0.62%
+iter 1380: loss 0.8789, time 140.91ms, mfu 0.62%
+iter 1390: loss 0.9365, time 140.66ms, mfu 0.62%
+[CSV] logged step 1400 for A_r1
+step 1400: train loss 0.9422, val loss 1.0002
+saving checkpoint to out
+iter 1400: loss 0.9340, time 1001.58ms, mfu 0.57%
+iter 1410: loss 0.8863, time 140.31ms, mfu 0.58%
+iter 1420: loss 0.8277, time 141.90ms, mfu 0.58%
+iter 1430: loss 0.8953, time 141.31ms, mfu 0.59%
+iter 1440: loss 1.0028, time 141.34ms, mfu 0.59%
+iter 1450: loss 0.8814, time 141.17ms, mfu 0.59%
+iter 1460: loss 0.9618, time 139.77ms, mfu 0.60%
+iter 1470: loss 1.0347, time 140.68ms, mfu 0.60%
+iter 1480: loss 1.0012, time 141.87ms, mfu 0.60%
+iter 1490: loss 0.9405, time 143.64ms, mfu 0.60%
+iter 1500: loss 0.8992, time 139.64ms, mfu 0.61%
+iter 1510: loss 0.8949, time 142.13ms, mfu 0.61%
+iter 1520: loss 0.9016, time 143.42ms, mfu 0.61%
+iter 1530: loss 1.0031, time 141.09ms, mfu 0.61%
+iter 1540: loss 1.1308, time 140.29ms, mfu 0.61%
+iter 1550: loss 0.9618, time 139.88ms, mfu 0.62%
+iter 1560: loss 1.0661, time 139.82ms, mfu 0.62%
+iter 1570: loss 0.9364, time 139.41ms, mfu 0.62%
+iter 1580: loss 0.9167, time 140.51ms, mfu 0.62%
+iter 1590: loss 0.9703, time 141.05ms, mfu 0.62%
+[CSV] logged step 1600 for A_r1
+step 1600: train loss 0.9296, val loss 0.9569
+saving checkpoint to out
+iter 1600: loss 0.9299, time 1086.60ms, mfu 0.57%
+iter 1610: loss 0.9118, time 141.32ms, mfu 0.57%
+iter 1620: loss 1.0541, time 140.96ms, mfu 0.58%
+iter 1630: loss 0.8408, time 140.90ms, mfu 0.58%
+iter 1640: loss 0.8596, time 142.38ms, mfu 0.59%
+iter 1650: loss 0.8946, time 142.06ms, mfu 0.59%
+iter 1660: loss 0.8748, time 140.66ms, mfu 0.60%
+iter 1670: loss 0.8910, time 141.30ms, mfu 0.60%
+iter 1680: loss 0.8881, time 141.02ms, mfu 0.60%
+iter 1690: loss 1.0377, time 142.19ms, mfu 0.60%
+iter 1700: loss 0.8782, time 141.18ms, mfu 0.61%
+iter 1710: loss 0.9944, time 142.32ms, mfu 0.61%
+iter 1720: loss 1.0242, time 142.06ms, mfu 0.61%
+iter 1730: loss 1.0024, time 142.08ms, mfu 0.61%
+iter 1740: loss 0.9885, time 141.97ms, mfu 0.61%
+iter 1750: loss 0.8087, time 142.37ms, mfu 0.61%
+iter 1760: loss 0.9325, time 144.55ms, mfu 0.61%
+iter 1770: loss 0.9407, time 146.79ms, mfu 0.61%
+iter 1780: loss 0.9157, time 146.08ms, mfu 0.61%
+iter 1790: loss 1.0474, time 145.59ms, mfu 0.61%
+[CSV] logged step 1800 for A_r1
+step 1800: train loss 0.9169, val loss 0.9412
+saving checkpoint to out
+iter 1800: loss 0.8700, time 1054.47ms, mfu 0.56%
+iter 1810: loss 0.8390, time 143.24ms, mfu 0.56%
+iter 1820: loss 0.9605, time 142.13ms, mfu 0.57%
+iter 1830: loss 0.8679, time 141.90ms, mfu 0.58%
+iter 1840: loss 0.9267, time 142.16ms, mfu 0.58%
+iter 1850: loss 0.7961, time 142.15ms, mfu 0.58%
+iter 1860: loss 0.9974, time 144.92ms, mfu 0.59%
+iter 1870: loss 0.7542, time 141.82ms, mfu 0.59%
+iter 1880: loss 0.9203, time 145.72ms, mfu 0.59%
+iter 1890: loss 0.9626, time 141.96ms, mfu 0.60%
+iter 1900: loss 0.9911, time 142.20ms, mfu 0.60%
+iter 1910: loss 0.9381, time 143.10ms, mfu 0.60%
+iter 1920: loss 0.9804, time 141.49ms, mfu 0.60%
+iter 1930: loss 1.1365, time 142.55ms, mfu 0.61%
+iter 1940: loss 0.9297, time 145.51ms, mfu 0.61%
+iter 1950: loss 0.8092, time 144.12ms, mfu 0.61%
+iter 1960: loss 0.8141, time 144.39ms, mfu 0.61%
+iter 1970: loss 1.0092, time 144.34ms, mfu 0.61%
+iter 1980: loss 1.0211, time 143.19ms, mfu 0.61%
+iter 1990: loss 0.9812, time 142.23ms, mfu 0.61%
+[CSV] logged step 2000 for A_r1
+step 2000: train loss 0.8892, val loss 0.9506
+saving checkpoint to out
+iter 2000: loss 0.9791, time 1057.89ms, mfu 0.56%
+iter 2010: loss 0.9526, time 143.54ms, mfu 0.56%
+iter 2020: loss 0.8698, time 143.61ms, mfu 0.57%
+iter 2030: loss 0.9319, time 149.81ms, mfu 0.57%
+iter 2040: loss 0.9123, time 148.25ms, mfu 0.57%
+iter 2050: loss 0.9680, time 143.84ms, mfu 0.58%
+iter 2060: loss 0.8897, time 145.40ms, mfu 0.58%
+iter 2070: loss 0.8749, time 144.46ms, mfu 0.58%
+iter 2080: loss 0.8262, time 144.68ms, mfu 0.59%
+iter 2090: loss 0.9771, time 143.95ms, mfu 0.59%
+iter 2100: loss 0.9125, time 143.34ms, mfu 0.59%
+iter 2110: loss 0.9124, time 145.14ms, mfu 0.59%
+iter 2120: loss 0.8742, time 143.95ms, mfu 0.60%
+iter 2130: loss 0.8353, time 144.20ms, mfu 0.60%
+iter 2140: loss 0.9844, time 144.81ms, mfu 0.60%
+iter 2150: loss 0.9173, time 145.38ms, mfu 0.60%
+iter 2160: loss 0.8181, time 145.15ms, mfu 0.60%
+iter 2170: loss 0.8262, time 146.94ms, mfu 0.60%
+iter 2180: loss 0.9347, time 146.60ms, mfu 0.60%
+iter 2190: loss 0.7886, time 151.55ms, mfu 0.60%
+[CSV] logged step 2200 for A_r1
+step 2200: train loss 0.9083, val loss 0.9134
+saving checkpoint to out
+iter 2200: loss 0.8763, time 1092.51ms, mfu 0.55%
+iter 2210: loss 0.8116, time 150.29ms, mfu 0.55%
+iter 2220: loss 0.8180, time 147.61ms, mfu 0.56%
+iter 2230: loss 0.8348, time 143.95ms, mfu 0.56%
+iter 2240: loss 0.9201, time 145.75ms, mfu 0.57%
+iter 2250: loss 0.8584, time 145.13ms, mfu 0.57%
+iter 2260: loss 0.9550, time 144.46ms, mfu 0.58%
+iter 2270: loss 0.8633, time 148.90ms, mfu 0.58%
+iter 2280: loss 0.8489, time 145.06ms, mfu 0.58%
+iter 2290: loss 0.8899, time 145.47ms, mfu 0.58%
+iter 2300: loss 0.8078, time 145.82ms, mfu 0.59%
+iter 2310: loss 0.9239, time 145.93ms, mfu 0.59%
+iter 2320: loss 0.8781, time 145.63ms, mfu 0.59%
+iter 2330: loss 1.0330, time 146.44ms, mfu 0.59%
+iter 2340: loss 0.9953, time 146.09ms, mfu 0.59%
+iter 2350: loss 0.9321, time 146.66ms, mfu 0.59%
+iter 2360: loss 0.9379, time 145.97ms, mfu 0.60%
+iter 2370: loss 0.8676, time 147.85ms, mfu 0.60%
+iter 2380: loss 0.6888, time 147.76ms, mfu 0.60%
+iter 2390: loss 0.8844, time 147.66ms, mfu 0.60%
+[CSV] logged step 2400 for A_r1
+step 2400: train loss 0.8852, val loss 0.9377
+saving checkpoint to out
+iter 2400: loss 0.8673, time 1102.56ms, mfu 0.55%
+iter 2410: loss 0.8848, time 150.17ms, mfu 0.55%
+iter 2420: loss 0.9964, time 149.95ms, mfu 0.55%
+iter 2430: loss 0.8503, time 149.17ms, mfu 0.56%
+iter 2440: loss 0.9035, time 149.66ms, mfu 0.56%
+iter 2450: loss 0.9149, time 151.16ms, mfu 0.56%
+iter 2460: loss 0.9659, time 150.71ms, mfu 0.57%
+iter 2470: loss 0.7713, time 152.21ms, mfu 0.57%
+iter 2480: loss 1.0008, time 151.99ms, mfu 0.57%
+iter 2490: loss 0.8942, time 152.10ms, mfu 0.57%
+iter 2500: loss 0.8655, time 152.62ms, mfu 0.57%
+iter 2510: loss 0.9601, time 153.47ms, mfu 0.57%
+iter 2520: loss 0.7652, time 154.40ms, mfu 0.57%
+iter 2530: loss 0.8724, time 154.91ms, mfu 0.57%
+iter 2540: loss 0.7767, time 154.91ms, mfu 0.57%
+iter 2550: loss 0.9251, time 156.93ms, mfu 0.57%
+iter 2560: loss 0.8536, time 156.85ms, mfu 0.57%
+iter 2570: loss 1.0089, time 154.31ms, mfu 0.57%
+iter 2580: loss 1.0449, time 156.88ms, mfu 0.57%
+iter 2590: loss 0.9553, time 155.89ms, mfu 0.57%
+[CSV] logged step 2600 for A_r1
+step 2600: train loss 0.8759, val loss 0.9166
+saving checkpoint to out
+iter 2600: loss 0.8311, time 1117.95ms, mfu 0.52%
+iter 2610: loss 0.8989, time 158.40ms, mfu 0.52%
+iter 2620: loss 0.9289, time 165.39ms, mfu 0.53%
+iter 2630: loss 0.7451, time 165.08ms, mfu 0.53%
+iter 2640: loss 0.9803, time 158.08ms, mfu 0.53%
+iter 2650: loss 0.9015, time 163.54ms, mfu 0.53%
+iter 2660: loss 0.7986, time 173.45ms, mfu 0.53%
+iter 2670: loss 0.9715, time 166.62ms, mfu 0.53%
+iter 2680: loss 0.8492, time 169.13ms, mfu 0.53%
+iter 2690: loss 1.0364, time 168.21ms, mfu 0.53%
+iter 2700: loss 0.8180, time 170.11ms, mfu 0.53%
+iter 2710: loss 0.9973, time 194.72ms, mfu 0.52%
+iter 2720: loss 0.8112, time 166.46ms, mfu 0.52%
+iter 2730: loss 0.9450, time 166.21ms, mfu 0.52%
+iter 2740: loss 0.7698, time 170.10ms, mfu 0.52%
+iter 2750: loss 0.9568, time 167.49ms, mfu 0.52%
+iter 2760: loss 0.8734, time 182.28ms, mfu 0.52%
+iter 2770: loss 0.8800, time 166.17ms, mfu 0.52%
+iter 2780: loss 0.9946, time 180.82ms, mfu 0.52%
+iter 2790: loss 0.9735, time 166.38ms, mfu 0.52%
+[CSV] logged step 2800 for A_r1
+step 2800: train loss 0.8888, val loss 0.9162
+saving checkpoint to out
+iter 2800: loss 0.8215, time 1183.66ms, mfu 0.47%
+iter 2810: loss 0.8474, time 172.30ms, mfu 0.48%
+iter 2820: loss 0.9238, time 162.39ms, mfu 0.49%
+iter 2830: loss 0.9061, time 162.10ms, mfu 0.49%
+iter 2840: loss 0.6937, time 164.12ms, mfu 0.50%
+iter 2850: loss 0.9071, time 163.25ms, mfu 0.50%
+iter 2860: loss 0.8886, time 163.81ms, mfu 0.51%
+iter 2870: loss 0.8923, time 162.28ms, mfu 0.51%
+iter 2880: loss 0.7685, time 172.29ms, mfu 0.51%
+iter 2890: loss 0.8753, time 169.25ms, mfu 0.51%
+iter 2900: loss 0.9546, time 168.83ms, mfu 0.51%
+iter 2910: loss 0.7184, time 169.96ms, mfu 0.51%
+iter 2920: loss 0.8832, time 165.20ms, mfu 0.52%
+iter 2930: loss 0.9459, time 163.77ms, mfu 0.52%
+iter 2940: loss 1.2085, time 167.40ms, mfu 0.52%
+iter 2950: loss 0.8599, time 166.90ms, mfu 0.52%
+iter 2960: loss 0.9623, time 163.44ms, mfu 0.52%
+iter 2970: loss 0.8521, time 163.87ms, mfu 0.52%
+iter 2980: loss 0.9238, time 167.81ms, mfu 0.52%
+iter 2990: loss 0.7405, time 234.62ms, mfu 0.51%
+[CSV] logged step 3000 for A_r1
+step 3000: train loss 0.8624, val loss 0.9338
+saving checkpoint to out
+iter 3000: loss 0.7754, time 1397.24ms, mfu 0.47%
+time:7,30 min
+
+
