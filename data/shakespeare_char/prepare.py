@@ -21,7 +21,8 @@ with open(input_file_path, 'r') as f:
 print(f"length of dataset in characters: {len(data):,}")
 
 # get all the unique characters that occur in this text
-chars = sorted(list(set(data)))
+extra_chars = {'[', ']'}
+chars = sorted(set(data) | extra_chars)
 vocab_size = len(chars)
 print("all the unique characters:", ''.join(chars))
 print(f"vocab size: {vocab_size:,}")
@@ -59,6 +60,12 @@ meta = {
 }
 with open(os.path.join(os.path.dirname(__file__), 'meta.pkl'), 'wb') as f:
     pickle.dump(meta, f)
+
+data = np.memmap('data/shakespeare_char/train.bin',
+dtype=np.uint16, mode='r')
+for frac in [0.10, 0.25, 0.50, 1.00]:
+    subset = data[:int(len(data) * frac)]
+    subset.tofile(f'data/shakespeare_char/train_{int(frac*100)}.bin')
 
 # length of dataset in characters:  1115394
 # all the unique characters:
