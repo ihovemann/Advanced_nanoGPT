@@ -11,7 +11,7 @@ from model import GPT, GPTConfig
 # -----------------------
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-data_dir = "data/shakespeare_char_sft_B"
+data_dir = "data/shakespeare_char_sft_A"
 ckpt_dir = "out"
 
 block_size = 128
@@ -19,14 +19,14 @@ batch_size = 4
 eval_iters = 200
 
 checkpoints = [ 
-    "ckpt_B.pt",
-]
-"""
     "ckpt_A_r1.pt",
     "ckpt_A_r2.pt",
     "ckpt_A_r4.pt",
     "ckpt_A_r8.pt",
-    "ckpt_A_r16.pt","""
+    "ckpt_A_r16.pt",
+]
+
+
 # -----------------------
 # DATA
 # -----------------------
