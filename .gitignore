@@ -10,3 +10,17 @@ __pycache__/
 input.txt
 env/
 venv/
+
+# Virtual environment
+venv/
+
+# Data binary files (too large for GitHub)
+data/shakespeare_char/train.bin
+data/shakespeare_char/val.bin
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Wandb logs
+wandb/

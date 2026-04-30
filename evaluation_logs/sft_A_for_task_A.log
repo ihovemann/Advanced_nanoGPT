@@ -1,0 +1,19 @@
+Using device: cpu
+Loading checkpoint from out-shakespeare-sft_A/ckpt.pt...
+number of parameters: 10.65M
+Model loaded! Parameters: 10,696,704
+Found 156 validation examples
+Progress: 50/156 | Accuracy so far: 8.0%
+Progress: 100/156 | Accuracy so far: 8.0%
+Progress: 150/156 | Accuracy so far: 8.0%
+
+==================================================
+Task A Evaluation Results
+==================================================
+Total examples evaluated: 156
+Skipped examples: 0
+Correct: 12
+Accuracy: 7.69%
+Random baseline: 10.00% (1 in 10 speakers)
+
+
