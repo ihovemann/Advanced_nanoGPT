@@ -1,10 +1,6 @@
 # NanoGPT – Advanced NLP Assignment
 This project trains and evaluates a small character-level Transformer language model using nanoGPT on the Tiny Shakespeare dataset.
 
-
-#RUN prepare.py AND THAN JUST RUN training_cluster.py. THIS SKRIPT WILL AUTOMATICALLY RUN THE BASIC TRAINING SKRIPT IN DIFFERENT CONFIGURATIONS AND PORDUCE ALL NECCESSARY OUTPUTS/PLOTS
-
-
 # nanoGPT
 This explores three key topics in modern NLP research: 
 1. Neural scaling laws and compute-optimal training
