@@ -18,7 +18,8 @@ All experiments are designed to run at small scale on a laptop CPU or a free-tie
 - out-shakespeare-*/ – Output directories containing model checkpoints for each run.
 - plots/ - Output directories containing all plots generated
 - samples/ - Output directories containing all the samples of each condition
-- LoRA_results - Output directory containing all LoRA results from Part 3
+- LoRA_results/ - Output directory containing all LoRA results from Part 3
+- scaling_laws_results/ - Output directory for scaling laws experiment from Part 1
 
 ## How to Run
 
@@ -29,6 +30,6 @@ Run this to install all the package required.
 pip install torch numpy transformers datasets tiktoken wandb tqdm matplotlib
 ```
 
-Open assignment.ipynb locally and run the cells in order.
+Open `assignment.ipynb` locally and run the cells in order.
 
 
