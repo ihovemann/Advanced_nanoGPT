@@ -1,26 +1,11 @@
-"""
-This training script can be run both on a single gpu in debug mode,
-and also in a larger training run with distributed data parallel (ddp).
 
-To run on a single GPU, example:
-$ python train.py --batch_size=32 --compile=False
-
-To run with DDP on 4 gpus on 1 node, example:
-$ torchrun --standalone --nproc_per_node=4 train.py
-
-To run with DDP on 4 gpus across 2 nodes, example:
-- Run on the first (master) node with example IP 123.456.123.456:
-$ torchrun --nproc_per_node=8 --nnodes=2 --node_rank=0 --master_addr=123.456.123.456 --master_port=1234 train.py
-- Run on the worker node:
-$ torchrun --nproc_per_node=8 --nnodes=2 --node_rank=1 --master_addr=123.456.123.456 --master_port=1234 train.py
-(If your cluster does not have Infiniband interconnect prepend NCCL_IB_DISABLE=1)
-"""
 
 import os
 import time
 import math
 import pickle
 from contextlib import nullcontext
+import json
 
 import numpy as np
 import torch
@@ -32,10 +17,12 @@ from model import GPTConfig, GPT
 # -----------------------------------------------------------------------------
 # default config values designed to train a gpt2 (124M) on OpenWebText
 # I/O
+train_bin = 'train.bin'
+
 out_dir = 'out'
-eval_interval = 2000
+eval_interval = 500
 log_interval = 1
-eval_iters = 200
+eval_iters = 50
 eval_only = False # if True, script exits right after the first eval
 always_save_checkpoint = True # if True, always save a checkpoint after each eval
 init_from = 'scratch' # 'scratch' or 'resume' or 'gpt2*'
@@ -44,18 +31,18 @@ wandb_log = False # disabled by default
 wandb_project = 'owt'
 wandb_run_name = 'gpt2' # 'run' + str(time.time())
 # data
-dataset = 'openwebtext'
-gradient_accumulation_steps = 5 * 8 # used to simulate larger batch sizes
-batch_size = 12 # if gradient_accumulation_steps > 1, this is the micro-batch size
-block_size = 1024
+dataset = 'shakespeare_char' # 'openwebtext' or 'shakespeare_char' or your own, defined in data/
+gradient_accumulation_steps = 4 # used to simulate larger batch sizes
+batch_size = 16 # if gradient_accumulation_steps > 1, this is the micro-batch size
+block_size = 256
 # model
-n_layer = 12
-n_head = 12
-n_embd = 768
+n_layer = 6
+n_head = 6
+n_embd = 384
 dropout = 0.0 # for pretraining 0 is good, for finetuning try 0.1+
 bias = False # do we use bias inside LayerNorm and Linear layers?
 # adamw optimizer
-learning_rate = 6e-4 # max learning rate
+learning_rate = 3e-4 # max learning rate
 max_iters = 600000 # total number of training iterations
 weight_decay = 1e-1
 beta1 = 0.9
@@ -69,9 +56,10 @@ min_lr = 6e-5 # minimum learning rate, should be ~= learning_rate/10 per Chinchi
 # DDP settings
 backend = 'nccl' # 'nccl', 'gloo', etc.
 # system
-device = 'cuda' # examples: 'cpu', 'cuda', 'cuda:0', 'cuda:1' etc., or try 'mps' on macbooks
-dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16' # 'float32', 'bfloat16', or 'float16', the latter will auto implement a GradScaler
-compile = True # use PyTorch 2.0 to compile the model to be faster
+device = 'mps' # examples: 'cpu', 'cuda', 'cuda:0', 'cuda:1' etc., or try 'mps' on macbooks
+device_type = 'cuda' if 'cuda' in device else 'mps' if 'mps' in device else 'cpu'
+compile = False # use PyTorch 2.0 to compile the model to be faster
+dtype = 'float32'
 # -----------------------------------------------------------------------------
 config_keys = [k for k,v in globals().items() if not k.startswith('_') and isinstance(v, (int, float, bool, str))]
 exec(open('configurator.py').read()) # overrides from command line or config file
@@ -117,7 +105,7 @@ def get_batch(split):
     # We recreate np.memmap every batch to avoid a memory leak, as per
     # https://stackoverflow.com/questions/45132940/numpy-memmap-memory-usage-want-to-iterate-once/61472122#61472122
     if split == 'train':
-        data = np.memmap(os.path.join(data_dir, 'train.bin'), dtype=np.uint16, mode='r')
+        data = np.memmap(os.path.join(data_dir, train_bin), dtype=np.uint16, mode='r')
     else:
         data = np.memmap(os.path.join(data_dir, 'val.bin'), dtype=np.uint16, mode='r')
     ix = torch.randint(len(data) - block_size, (batch_size,))
@@ -191,6 +179,8 @@ if block_size < model.config.block_size:
     model.crop_block_size(block_size)
     model_args['block_size'] = block_size # so that the checkpoint will have the right value
 model.to(device)
+num_params = sum(p.numel() for p in model.parameters())
+print(f"Number of parameters: {num_params}")
 
 # initialize a GradScaler. If enabled=False scaler is a no-op
 scaler = torch.cuda.amp.GradScaler(enabled=(dtype == 'float16'))
@@ -263,14 +253,46 @@ while True:
     if iter_num % eval_interval == 0 and master_process:
         losses = estimate_loss()
         print(f"step {iter_num}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+
+        # ----------------------------
+        # NEW: JSON LOGGING (SCALING EXPERIMENT)
+        # ----------------------------
+
+        log_path = os.path.join(out_dir, "eval_log.json")
+
+        log_entry = {
+            "iter": iter_num,
+            "train_loss": losses['train'].item(),
+            "val_loss": losses['val'].item(),
+            "params": num_params
+        }
+
+        if os.path.exists(log_path):
+            with open(log_path, "r") as f:
+                logs = json.load(f)
+        else:
+            logs = []
+
+        logs.append(log_entry)
+
+        with open(log_path, "w") as f:
+            json.dump(logs, f)
+
+        # ----------------------------
+        # wandb logging (unchanged)
+        # ----------------------------
         if wandb_log:
             wandb.log({
                 "iter": iter_num,
                 "train/loss": losses['train'],
                 "val/loss": losses['val'],
                 "lr": lr,
-                "mfu": running_mfu*100, # convert to percentage
+                "mfu": running_mfu * 100,
             })
+
+        # ----------------------------
+        # checkpoint saving
+        # ----------------------------
         if losses['val'] < best_val_loss or always_save_checkpoint:
             best_val_loss = losses['val']
             if iter_num > 0:
@@ -284,8 +306,16 @@ while True:
                 }
                 print(f"saving checkpoint to {out_dir}")
                 torch.save(checkpoint, os.path.join(out_dir, 'ckpt.pt'))
+
+    # ----------------------------
+    # eval-only early exit
+    # ----------------------------
     if iter_num == 0 and eval_only:
         break
+
+    # training step continues below...
+
+    
 
     # forward backward update, with optional gradient accumulation to simulate larger batch size
     # and using the GradScaler if data type is float16
