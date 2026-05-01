@@ -1,7 +1,6 @@
 # NanoGPT – Advanced NLP Assignment
 This project trains and evaluates a small character-level Transformer language model using nanoGPT on the Tiny Shakespeare dataset.
 
-# nanoGPT
 This explores three key topics in modern NLP research: 
 1. Neural scaling laws and compute-optimal training
 2. Supervised fine-tuning (SFT) on downstream tasks
